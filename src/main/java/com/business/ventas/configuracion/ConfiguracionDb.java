@@ -24,11 +24,11 @@ public class ConfiguracionDb {
         return sessionFactoryBean;
     }
 
-    @Bean
+    @Bean(name = "dataSource")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://127.0.0.1:1433;databaseName=rest-ventas");
+        dataSource.setUrl("jdbc:sqlserver://192.168.100.102:1433;databaseName=rest_ventas");
         dataSource.setUsername("sa");
         dataSource.setPassword("sistemas1");
         return dataSource;
