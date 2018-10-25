@@ -2,10 +2,11 @@ package com.business.ventas.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="user_roles")
-public class Rol {
+public class Rol implements Serializable {
 
     @Id
     @Column(name="user_role_id")
