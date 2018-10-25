@@ -14,7 +14,7 @@ public class User {
     private String username;
     @Column(name="password")
     private String password;
-    @Column(name="ENABLE")
+    @Column(name="enabled")
     private int enable;
 
     public long getId() {
