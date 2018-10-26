@@ -1,3 +1,4 @@
+
 package com.business.ventas.configuracion;
 
 import java.util.Properties;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class ConfiguracionDb {
 
+    ConfigProperties conf = ConfigProperties.getInstancia(ConfigProperties.XML);
+
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
@@ -27,17 +30,17 @@ public class ConfiguracionDb {
     @Bean(name = "dataSource")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://192.168.100.102:1433;databaseName=rest_ventas");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("p@ssw0rd");
+        dataSource.setDriverClassName(conf.getClassName());
+        dataSource.setUrl(conf.getUrl());
+        dataSource.setUsername(conf.getUserName());
+        dataSource.setPassword(conf.getPassword());
         return dataSource;
     }
 
     public Properties hibernetProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
-        properties.put("show_sql",true);
+        properties.put("hibernate.dialect", conf.getDialect());
+        properties.put("show_sql",conf.getShowSql());
         return properties;
     }
 
